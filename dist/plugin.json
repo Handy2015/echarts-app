@@ -35,11 +35,11 @@
       {
         "name": "Project site",
         "url": "https://github.com/Handy2015/echarts-app.git"
+      },
+      {
+        "name": "License & Terms",
+        "url": "https://github.com/Handy2015/echarts-app/blob/master/LICENSE"
       }
-      // {
-      //   "name": "License & Terms",
-      //   "url": "https://github.com/Handy2015/echarts-app/blob/master/LICENSE"
-      // }
     ],
     "version": "1.0.0",
     "updated": "2017-11-15"
@@ -47,7 +47,7 @@
   "includes": [
     {
       "type": "dashboard",
-      "name": "echarts App Dashboard",
+      "name": "Echarts App Dashboard",
       "path": "dashboards/echarts_app_dashboard.json"
     },
     {

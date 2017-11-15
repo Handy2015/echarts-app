@@ -2,6 +2,8 @@
  * 配置文件
  */
 export class EchartsAppConfigCtrl {
-  constructor() {}
+  constructor() {
+    console.log('echarts app config')
+  }
 }
-ExampleAppConfigCtrl.templateUrl = 'components/config.html';
+EchartsAppConfigCtrl.templateUrl = 'components/config.html';

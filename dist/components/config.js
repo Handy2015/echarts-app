@@ -16,11 +16,13 @@ System.register([], function (_export, _context) {
     execute: function () {
       _export('EchartsAppConfigCtrl', EchartsAppConfigCtrl = function EchartsAppConfigCtrl() {
         _classCallCheck(this, EchartsAppConfigCtrl);
+
+        console.log('echarts app config');
       });
 
       _export('EchartsAppConfigCtrl', EchartsAppConfigCtrl);
 
-      ExampleAppConfigCtrl.templateUrl = 'components/config.html';
+      EchartsAppConfigCtrl.templateUrl = 'components/config.html';
     }
   };
 });
