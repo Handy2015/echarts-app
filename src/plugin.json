@@ -1,0 +1,66 @@
+{
+  "type": "app",
+  "name": "Echarts",
+  "id": "grafana-echarts-app",
+  "pages": [
+    {
+      "name": "Live stream",
+      "component": "StreamPageCtrl",
+      "role": "Editor"
+    },
+    {
+      "name": "Log view",
+      "component": "LogsPageCtrl",
+      "role": "Viewer"
+    }
+  ],
+  "css": {
+    "dark": "css/dark.css",
+    "light": "css/light.css"
+  },
+  "info": {
+    "description": "Echarts app for Grafana",
+    "author": {
+      "name": "haojianmin",
+      "url": "http://118.190.200.76:3389"
+    },
+    "keywords": [
+      "echarts app"
+    ],
+    "logos": {
+      "small": "img/small_logo.png",
+      "large": "img/large_logo.png"
+    },
+    "links": [
+      {
+        "name": "Project site",
+        "url": "https://github.com/grafana/echarts-app"
+      },
+      {
+        "name": "License & Terms",
+        "url": "https://github.com/grafana/echarts-app/blob/master/LICENSE"
+      }
+    ],
+    "version": "1.0.0",
+    "updated": "2017-11-15"
+  },
+  "includes": [
+    {
+      "type": "dashboard",
+      "name": "echarts App Dashboard",
+      "path": "dashboards/echarts_app_dashboard.json"
+    },
+    {
+      "type": "panel",
+      "name": "Echarts App Panel"
+    },
+    {
+      "type": "datasource",
+      "name": "Echarts App Datasource"
+    }
+  ],
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": []
+  }
+}
