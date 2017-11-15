@@ -1,0 +1,5 @@
+{
+  "type": "datasource",
+  "name": "Echarts App Datasource",
+  "id": "grafana-echarts-app-datasource"
+}

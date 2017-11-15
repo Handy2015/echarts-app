@@ -1,0 +1,5 @@
+{
+  "type": "panel",
+  "name": "Echarts App Panel",
+  "id": "grafana-echarts-app-panel"
+}
