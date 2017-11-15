@@ -13,7 +13,7 @@ export default class EchartsAppDatasource {
    */
   query(options) {
     return [
-      'SELECT * FROM list'
+      'SELECT * FROM posts'
     ];
   }
   /**
@@ -25,7 +25,7 @@ export default class EchartsAppDatasource {
   }
   /**
    * used by dashboards to get annotations
-   * @param {*} options 
+   * @param {object} options 
    */
   annotationQuery(options) {
     return [];

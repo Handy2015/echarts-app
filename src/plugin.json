@@ -3,11 +3,6 @@
   "name": "Echarts",
   "id": "grafana-echarts-app",
   "pages": [
-    // {
-    //   "name": "Log view",
-    //   "component": "LogsPageCtrl",
-    //   "role": "Viewer"
-    // },
     {
       "name": "Live stream",
       "component": "StreamPageCtrl",

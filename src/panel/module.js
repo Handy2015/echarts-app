@@ -6,7 +6,7 @@ class EchartsAppPanelCtrl extends PanelCtrl {
     super($scope, $injector);
   }
 }
-EchartsAppPanelCtrl.template = '<h2 class="echarts-app-heading">echarts app!</h2>';
+EchartsAppPanelCtrl.template = '<h2 class="echarts-app-heading">数据监控-中国地图</h2>';
 
 export {
   EchartsAppPanelCtrl as PanelCtrl
