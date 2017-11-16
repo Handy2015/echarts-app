@@ -1,12 +1,24 @@
+/**
+ * Grafana-Echarts
+ * Echarts plugin for Grafana.
+ * Trigger panel.
+ * 
+ */
+
 import { PanelCtrl } from 'app/plugins/sdk';
+
+import { getChinaMapOption } from '../js/EchartsOptionsUtils'
+
 import '../css/echarts-app.css!'
 
 class EchartsAppPanelCtrl extends PanelCtrl {
   constructor($scope, $injector) {
     super($scope, $injector);
+    console.log(this);
   }
+
 }
-EchartsAppPanelCtrl.template = '<h2 class="echarts-app-heading">数据监控-中国地图</h2>';
+EchartsAppPanelCtrl.templateUrl = 'panel/module.html';
 
 export {
   EchartsAppPanelCtrl as PanelCtrl

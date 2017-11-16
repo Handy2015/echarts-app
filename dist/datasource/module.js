@@ -22,7 +22,7 @@ System.register(['./datasource'], function (_export, _context) {
 
       EchartsAppConfigCtrl.template = '<datasource-http-settings current="ctrl.current"></datasource-http-settings>';
 
-      _export('EchartsAppDatasource', EchartsAppDatasource);
+      _export('Datasource', EchartsAppDatasource);
 
       _export('ConfigCtrl', EchartsAppConfigCtrl);
     }

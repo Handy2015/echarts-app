@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['app/plugins/sdk', '../css/echarts-app.css!'], function (_export, _context) {
+System.register(['app/plugins/sdk', '../js/EchartsOptionsUtils', '../css/echarts-app.css!'], function (_export, _context) {
   "use strict";
 
-  var PanelCtrl, EchartsAppPanelCtrl;
+  var PanelCtrl, getChinaMapOption, EchartsAppPanelCtrl;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -38,6 +38,8 @@ System.register(['app/plugins/sdk', '../css/echarts-app.css!'], function (_expor
   return {
     setters: [function (_appPluginsSdk) {
       PanelCtrl = _appPluginsSdk.PanelCtrl;
+    }, function (_jsEchartsOptionsUtils) {
+      getChinaMapOption = _jsEchartsOptionsUtils.getChinaMapOption;
     }, function (_cssEchartsAppCss) {}],
     execute: function () {
       _export('PanelCtrl', EchartsAppPanelCtrl = function (_PanelCtrl) {
@@ -46,13 +48,16 @@ System.register(['app/plugins/sdk', '../css/echarts-app.css!'], function (_expor
         function EchartsAppPanelCtrl($scope, $injector) {
           _classCallCheck(this, EchartsAppPanelCtrl);
 
-          return _possibleConstructorReturn(this, (EchartsAppPanelCtrl.__proto__ || Object.getPrototypeOf(EchartsAppPanelCtrl)).call(this, $scope, $injector));
+          var _this = _possibleConstructorReturn(this, (EchartsAppPanelCtrl.__proto__ || Object.getPrototypeOf(EchartsAppPanelCtrl)).call(this, $scope, $injector));
+
+          console.log(_this);
+          return _this;
         }
 
         return EchartsAppPanelCtrl;
       }(PanelCtrl));
 
-      EchartsAppPanelCtrl.template = '<h2 class="echarts-app-heading">echarts app!</h2>';
+      EchartsAppPanelCtrl.templateUrl = 'panel/module.html';
 
       _export('PanelCtrl', EchartsAppPanelCtrl);
     }

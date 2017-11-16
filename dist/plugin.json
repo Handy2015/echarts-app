@@ -42,7 +42,7 @@
   "includes": [
     {
       "type": "dashboard",
-      "name": "Echarts App Dashboard",
+      "name": "Echarts",
       "path": "dashboards/echarts_app_dashboard.json"
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "type": "datasource",
-      "name": "Echarts App Datasource"
+      "name": "Echarts Datasource"
     }
   ],
   "dependencies": {

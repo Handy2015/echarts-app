@@ -1,9 +1,9 @@
 'use strict';
 
-System.register([], function (_export, _context) {
+System.register(['lodash'], function (_export, _context) {
   "use strict";
 
-  var _createClass, EchartsAppDatasource;
+  var _, _createClass, EchartsAppDatasource;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -12,7 +12,9 @@ System.register([], function (_export, _context) {
   }
 
   return {
-    setters: [],
+    setters: [function (_lodash) {
+      _ = _lodash.default;
+    }],
     execute: function () {
       _createClass = function () {
         function defineProperties(target, props) {
@@ -32,45 +34,148 @@ System.register([], function (_export, _context) {
         };
       }();
 
-      EchartsAppDatasource = function () {
-        function EchartsAppDatasource() {
+      _export('EchartsAppDatasource', EchartsAppDatasource = function () {
+        function EchartsAppDatasource(instanceSettings, $q, backendSrv, templateSrv) {
           _classCallCheck(this, EchartsAppDatasource);
 
-          console.log('echarts app test');
+          console.log(instanceSettings, templateSrv, backendSrv, templateSrv);
+          // console.log(backendSrv);
+          // console.log(this);
+          this.type = instanceSettings.type;
+          this.url = instanceSettings.url;
+          this.name = instanceSettings.name;
+          this.q = $q;
+          this.backendSrv = backendSrv;
+          this.templateSrv = templateSrv;
+          this.withCredentials = instanceSettings.withCredentials;
+          this.headers = { 'Content-Type': 'application/json' };
+          if (typeof instanceSettings.basicAuth === 'string' && instanceSettings.basicAuth.length > 0) {
+            this.headers['Authorization'] = instanceSettings.basicAuth;
+          }
+          console.log('url: ' + this.url);
         }
-
-        /**
-         * 获取服务器数据 sql
-         * @param {object} options 
-         */
+        // /**
+        //  * 获取服务器数据 sql
+        //  * @param {object} options 
+        //  */
 
 
         _createClass(EchartsAppDatasource, [{
           key: 'query',
           value: function query(options) {
-            return ['SELECT * FROM list'];
+            var query = this.buildQueryParameters(options);
+            query.targets = query.targets.filter(function (t) {
+              return !t.hide;
+            });
+
+            if (query.targets.length <= 0) {
+              return this.q.when({ data: [] });
+            }
+
+            return this.doRequest({
+              url: this.url + '/query',
+              data: query,
+              method: 'POST'
+            });
           }
         }, {
           key: 'testDatasource',
           value: function testDatasource() {
-            return false;
+            return this.doRequest({
+              url: this.url + '/',
+              method: 'GET'
+            }).then(function (response) {
+              if (response.status === 200) {
+                return { status: "success", message: "Data source is working", title: "Success" };
+              }
+            });
           }
         }, {
           key: 'annotationQuery',
           value: function annotationQuery(options) {
-            return [];
+            var query = this.templateSrv.replace(options.annotation.query, {}, 'glob');
+            var annotationQuery = {
+              range: options.range,
+              annotation: {
+                name: options.annotation.name,
+                datasource: options.annotation.datasource,
+                enable: options.annotation.enable,
+                iconColor: options.annotation.iconColor,
+                query: query
+              },
+              rangeRaw: options.rangeRaw
+            };
+
+            return this.doRequest({
+              url: this.url + '/annotations',
+              method: 'POST',
+              data: annotationQuery
+            }).then(function (result) {
+              return result.data;
+            });
           }
         }, {
           key: 'metricFindQuery',
-          value: function metricFindQuery(options) {
-            return [];
+          value: function metricFindQuery(query) {
+            var interpolated = {
+              target: this.templateSrv.replace(query, null, 'regex')
+            };
+            console.log('url: ' + this.url);
+            return this.doRequest({
+              url: this.url + '/search',
+              data: interpolated,
+              method: 'POST'
+            }).then(this.mapToTextValue);
+          }
+        }, {
+          key: 'mapToTextValue',
+          value: function mapToTextValue(result) {
+            return _.map(result.data, function (d, i) {
+              if (d && d.text && d.value) {
+                return { text: d.text, value: d.value };
+              } else if (_.isObject(d)) {
+                return { text: d, value: i };
+              }
+              return { text: d, value: d };
+            });
+          }
+        }, {
+          key: 'doRequest',
+          value: function doRequest(options) {
+            options.withCredentials = this.withCredentials;
+            options.headers = this.headers;
+
+            return this.backendSrv.datasourceRequest(options);
+          }
+        }, {
+          key: 'buildQueryParameters',
+          value: function buildQueryParameters(options) {
+            var _this = this;
+
+            //remove placeholder targets
+            options.targets = _.filter(options.targets, function (target) {
+              return target.target !== 'select metric';
+            });
+
+            var targets = _.map(options.targets, function (target) {
+              return {
+                target: _this.templateSrv.replace(target.target, options.scopedVars, 'regex'),
+                refId: target.refId,
+                hide: target.hide,
+                type: target.type || 'timeserie'
+              };
+            });
+
+            options.targets = targets;
+
+            return options;
           }
         }]);
 
         return EchartsAppDatasource;
-      }();
+      }());
 
-      _export('default', EchartsAppDatasource);
+      _export('EchartsAppDatasource', EchartsAppDatasource);
     }
   };
 });
