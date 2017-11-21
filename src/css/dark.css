@@ -5,12 +5,12 @@
 
 }
 .triggers-panel-scroll {
-
+  width: 100%;
 }
-
 .triggers-panel-scroll-type {
 
 }
-.triggers-panel-scroll-charts {
-
+.triggers-panel-charts {
+  width: 100%;
+  height: 300px;
 }

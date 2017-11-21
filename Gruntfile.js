@@ -10,6 +10,24 @@ module.exports = function(grunt) {
     clean: ["dist"],
 
     copy: {
+      node_modules: {
+        cwd: './node_modules',
+        expand: true,
+        flatten: true,
+        filter: 'isFile',
+        src: [
+          'echarts/dist/echarts.min.js'
+        ],
+        dest: 'echarts/npm'
+      },
+      echarts_to_dist: {
+        cwd: 'echarts',
+        expand: true,
+        src: [
+          '**/*'
+        ],
+        dest: 'dist/echarts'
+      },
       src_to_dist: {
         cwd: 'src',
         expand: true,

@@ -39,7 +39,6 @@ System.register(['lodash'], function (_export, _context) {
           _classCallCheck(this, EchartsAppDatasource);
 
           console.log(instanceSettings, templateSrv, backendSrv, templateSrv);
-          // console.log(backendSrv);
           // console.log(this);
           this.type = instanceSettings.type;
           this.url = instanceSettings.url;
@@ -54,10 +53,10 @@ System.register(['lodash'], function (_export, _context) {
           }
           console.log('url: ' + this.url);
         }
-        // /**
-        //  * 获取服务器数据 sql
-        //  * @param {object} options 
-        //  */
+        /**
+         * 获取服务器数据 sql
+         * @param {object} options 
+         */
 
 
         _createClass(EchartsAppDatasource, [{
@@ -144,7 +143,6 @@ System.register(['lodash'], function (_export, _context) {
           value: function doRequest(options) {
             options.withCredentials = this.withCredentials;
             options.headers = this.headers;
-
             return this.backendSrv.datasourceRequest(options);
           }
         }, {
